@@ -1,0 +1,71 @@
+#ifndef Lab1Header
+#define Lab1Header
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Class {
+    string name;
+    char grade;
+    string semester;
+};
+
+
+class Student {
+private:
+    string name;
+    string id;
+    Class classes[100];
+    float gpa;
+
+public:
+    string getName() { return name; }
+    string getId() { return id; }
+    Class* getClasses() { return classes; }
+    float getGpa() { return gpa; }
+
+    void setName(string n) { name = n; }
+    void setId(string i) { id = i; }
+    void setClasses(Class c[], int length){
+        copy(c, c + length, classes);
+    }
+
+    float calcGpa() {
+        int i = 0;
+        float g = 0;
+        bool moreClasses = true;
+        while(moreClasses) {
+            if (classes[i].grade == 'A') {
+                    g += 4.0;
+            }
+            else if (classes[i].grade == 'B') {
+                    g += 3.0;
+            }
+            else if (classes[i].grade == 'C') {
+                    g += 2.0;
+            }
+            else if (classes[i].grade == 'D') {
+                    g += 1.0;
+            }
+            else if (classes[i].name == "") {
+                moreClasses = false;
+            }
+            i++;
+        }
+        gpa = g /(i - 1);
+        return gpa;
+    }
+    vector<Class> findClasses(char g) {
+        vector<Class> c;
+        for (int i = 0; i < 100; i++) {
+            if (classes[i].grade == g) {
+                c.push_back(classes[i]);
+            }
+        }
+        return c;
+    }
+};
+
+#endif
