@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include "Lab1Header.h"
+
+using namespace std;
+
+void printClasses(Class c[]) {
+    for (int i = 0; i < 100; i++) {
+        if (c[i].name == "") {
+            return;
+        }
+        cout << c[i].name + ", " + c[i].grade + ", " + c[i].semester << endl;
+    }
+}
+void printVector(vector<Class> c) {
+    for (int i = 0; i < c.size(); i++) {
+        cout << c[i].name + ", " + c[i].grade + ", " + c[i].semester << endl;
+    }
+}
+
+int main() {
+    Student phil;
+    phil.setName("Phil D. Yankovic");
+    phil.setId("dfuhefj439983");
+
+    Class testClasses[100];
+    testClasses[0].grade = 'A';
+    testClasses[0].name = "Advanced Knitting";
+    testClasses[0].semester = "Fall 2021";
+    testClasses[1].grade = 'B';
+    testClasses[1].name = "Comp 1";
+    testClasses[1].semester = "Fall 2021";
+    testClasses[2].grade = 'C';
+    testClasses[2].name = "Comp 2";
+    testClasses[2].semester = "Spring 2022";
+    testClasses[3].grade = 'D';
+    testClasses[3].name = "Advanced Geometry";
+    testClasses[3].semester = "Spring 2022";
+    testClasses[4].grade = 'F';
+    testClasses[4].name = "P.E.";
+    testClasses[4].semester = "Fall 2022";
+    testClasses[5].grade = 'A';
+    testClasses[5].name = "Jazz History";
+    testClasses[5].semester = "Fall 2022";
+
+    phil.setClasses(testClasses, 100);
+
+    cout << "Name: " + phil.getName() << "\nId:" << phil.getId() << "\nClasses:\n";
+    printClasses(phil.getClasses());
+    phil.calcGpa();
+    cout << "GPA: " << phil.getGpa() << endl;
+    vector<Class> testClass = phil.findClasses('A');
+    printVector(testClass);
+}
